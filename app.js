@@ -205,3 +205,12 @@ fs.readFile(path.resolve(__dirname, 'config/ipbans.txt'), (err, data) => {
  *********************************************************/
 
 require('./repl.js').start('app', cmd => eval(cmd));
+
+/*********************************************************
+ * Oters
+ *********************************************************/
+
+global.League = require('./league.js'); 
+global.Clans = require('./clans.js'); 
+global.War = require('./war.js'); 
+global.teamTour = require('./teamtour.js');
